@@ -4,83 +4,83 @@
 
 import java.util.Scanner;
 
-public class HashTable {
-    private int[] table;
-    private int size;
+public class Hashtabla {
+    private int[] tabla;
+    private int tamanio;
 
-    public HashTable(int size) {
-        this.size = size;
-        this.table = new int[size];
+    public Hashtabla(int tamanio) {
+        this.tamanio = tamanio;
+        this.tabla = new int[tamanio];
     }
 
-    public void insert(int key, String probingMethod) {
-        int index = hash(key);
+    public void insert(int llave, String probingMethod) {
+        int indice = hash(llave);
         int i = 1;
 
-        while (table[index] != 0) {
-            // Manejo de colisiones
+        while (tabla[indice] != 0) {
+            // jandler de colisiones
             if (probingMethod.equals("linear")) {
-                index = (index + 1) % size; // Sonda lineal
+                indice = (indice + 1) % tamanio; // Sonda lineal
             } else if (probingMethod.equals("quadratic")) {
-                index = (index + i * i) % size; // Sonda cuadrática
+                indice = (indice + i * i) % tamanio; // cuadrática
                 i++;
             }
 
-            if (index < 0) {
-                index += size; // Asegurar que el índice sea no negativo
+            if (indice < 0) {
+                indice += tamanio; //índice  no negativo
             }
         }
 
-        table[index] = key;
+        tabla[indice] = llave;
     }
 
-    public boolean search(int key) {
-        int index = hash(key);
+    public boolean search(int llave) {
+        int indice = hash(llave);
 
-        while (table[index] != 0) {
-            if (table[index] == key) {
-                return true; // Valor encontrado
+        while (tabla[indice] != 0) {
+            if (tabla[indice] == llave) {
+                return true; //encontrado
             }
 
-            index = (index + 1) % size; // Sonda lineal para búsqueda
+            indice = (indice + 1) % tamanio; // sonda lineal
         }
 
-        return false; // Valor no encontrado
+        return false; // 0 results encontrados
     }
 
-    public void delete(int key) {
-        int index = hash(key);
+    public void delete(int llave) {
+        int indice = hash(llave);
 
-        while (table[index] != 0) {
-            if (table[index] == key) {
-                table[index] = 0; // Eliminar valor
-                System.out.println("Valor " + key + " eliminado.");
+        while (tabla[indice] != 0) {
+            if (tabla[indice] == llave) {
+                tabla[indice] = 0; // elimina valor
+                System.out.println("Valor " + llave + " eliminado.");
                 return;
             }
 
-            index = (index + 1) % size; // Sonda lineal para eliminación
+            indice = (indice + 1) % tamanio; //lineal para borrar
         }
 
-        System.out.println("Valor " + key + " no encontrado.");
+        System.out.println("Valor " + llave + " no encontrado.");
     }
 
-    public void displayTable() {
+    public void MostrarTabla() {
         System.out.println("Tabla Hash:");
-        for (int i = 0; i < size; i++) {
-            System.out.println("Índice " + i + ": " + table[i]);
+        for (int i = 0; i < tamanio; i++) {
+            System.out.println("Índice " + i + ": " + tabla[i]);
         }
     }
 
-    private int hash(int key) {
-        return key % size;
+    private int hash(int llave) {
+        return llave % tamanio;
     }
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        System.out.print("Ingrese el tamaño de la tabla hash: ");
-        int tableSize = scanner.nextInt();
+        System.out.print("Ingrese el tamanio de la tabla hash: ");
+        int tablatamanio = scanner.nextInt();
 
-        HashTable hashTable = new HashTable(tableSize);
+        Hashtabla hashtabla = new Hashtabla(tablatamanio);
 
         while (true) {
             System.out.println("\nMenú:");
@@ -90,29 +90,29 @@ public class HashTable {
             System.out.println("4. Mostrar tabla");
             System.out.println("0. Salir");
             System.out.print("Seleccione una opción: ");
-            int choice = scanner.nextInt();
+            int elegido = scanner.nextInt();
 
-            switch (choice) {
+            switch (elegido) {
                 case 1:
                     System.out.print("Ingrese el valor a insertar: ");
-                    int insertValue = scanner.nextInt();
+                    int ValorIngresado = scanner.nextInt();
                     System.out.print("Seleccione el método de manejo de colisiones (linear/quadratic): ");
-                    String insertProbingMethod = scanner.next();
-                    hashTable.insert(insertValue, insertProbingMethod);
+                    String ValorLinQuad = scanner.next();
+                    hashtabla.insert(ValorIngresado, ValorLinQuad);
                     break;
                 case 2:
                     System.out.print("Ingrese el valor a buscar: ");
-                    int searchValue = scanner.nextInt();
-                    System.out.println("El valor " + searchValue + " " +
-                            (hashTable.search(searchValue) ? "está presente." : "no está presente."));
+                    int ValorABuscar = scanner.nextInt();
+                    System.out.println("El valor " + ValorABuscar + " " +
+                            (hashtabla.search(ValorABuscar) ? "está presente." : "no está presente."));
                     break;
                 case 3:
                     System.out.print("Ingrese el valor a eliminar: ");
-                    int deleteValue = scanner.nextInt();
-                    hashTable.delete(deleteValue);
+                    int ValorABorrar = scanner.nextInt();
+                    hashtabla.delete(ValorABorrar);
                     break;
                 case 4:
-                    hashTable.displayTable();
+                    hashtabla.MostrarTabla();
                     break;
                 case 0:
                     System.out.println("Saliendo del programa.");

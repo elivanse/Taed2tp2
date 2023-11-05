@@ -1,12 +1,13 @@
 // Apellido: Pereyra
 // Nombre: Ivan Maximiliano
 // Legajo: VINF011264
+//inciso B
 
-public class Hashtabla {
+public class HashearTabla {
     private int[] tabla;
     private int tamanio;
 
-    public Hashtabla(int tamanio) {
+    public HashearTabla(int tamanio) {
         this.tamanio = tamanio;
         this.tabla = new int[tamanio];
     }
@@ -50,8 +51,8 @@ public class Hashtabla {
     }
 
     public static void main(String[] args) {
-        Hashtabla linearDPruebatabla = new Hashtabla(10);
-        Hashtabla quadraticDPruebatabla = new Hashtabla(10);
+        HashearTabla linearDPruebatabla = new HashearTabla(10);
+        HashearTabla quadraticDPruebatabla = new HashearTabla(10);
 
         int[] keys = { 25, 35, 45, 55, 65, 75, 85, 95 };
 

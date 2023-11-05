@@ -1,65 +1,69 @@
-public class HashTable {
-    private int[] table;
-    private int size;
+// Apellido: Pereyra
+// Nombre: Ivan Maximiliano
+// Legajo: VINF011264
 
-    public HashTable(int size) {
-        this.size = size;
-        this.table = new int[size];
+public class Hashtabla {
+    private int[] tabla;
+    private int tamanio;
+
+    public Hashtabla(int tamanio) {
+        this.tamanio = tamanio;
+        this.tabla = new int[tamanio];
     }
 
-    public void insertLinearProbing(int key) {
+    public void InsertarLinearDPrueba(int key) {
         int index = hash(key);
 
-        while (table[index] != 0) {
-            // Sonda lineal
-            index = (index + 1) % size;
+        while (tabla[index] != 0) {
+            // lineal
+            index = (index + 1) % tamanio;
         }
 
-        table[index] = key;
+        tabla[index] = key;
     }
 
-    public void insertQuadraticProbing(int key) {
+    public void InsertarCuadraticaDPrueba(int key) {
         int index = hash(key);
         int i = 1;
 
-        while (table[index] != 0) {
-            // Sonda cuadrática
-            index = (index + i * i) % size;
+        while (tabla[index] != 0) {
+            // cuadrática
+            index = (index + i * i) % tamanio;
             i++;
             if (index < 0) {
-                index += size; // Asegurar que el índice sea no negativo
+                index += tamanio; // índice no negativo
             }
         }
 
-        table[index] = key;
+        tabla[index] = key;
     }
 
-    public void displayTable() {
+    public void displaytabla() {
         System.out.println("Tabla Hash:");
-        for (int i = 0; i < size; i++) {
-            System.out.println("Índice " + i + ": " + table[i]);
+        for (int i = 0; i < tamanio; i++) {
+            System.out.println("Índice " + i + ": " + tabla[i]);
         }
     }
 
     private int hash(int key) {
-        return key % size;
+        return key % tamanio;
     }
 
     public static void main(String[] args) {
-        HashTable linearProbingTable = new HashTable(10);
-        HashTable quadraticProbingTable = new HashTable(10);
+        Hashtabla linearDPruebatabla = new Hashtabla(10);
+        Hashtabla quadraticDPruebatabla = new Hashtabla(10);
 
         int[] keys = { 25, 35, 45, 55, 65, 75, 85, 95 };
 
         for (int key : keys) {
-            linearProbingTable.insertLinearProbing(key);
-            quadraticProbingTable.insertQuadraticProbing(key);
+            linearDPruebatabla.InsertarLinearDPrueba(key);
+            quadraticDPruebatabla.InsertarCuadraticaDPrueba(key);
         }
 
         System.out.println("Sondeo Lineal:");
-        linearProbingTable.displayTable();
+        linearDPruebatabla.displaytabla();
 
         System.out.println("\nSondeo Cuadrático:");
-        quadraticProbingTable.displayTable();
+        quadraticDPruebatabla.displaytabla();
     }
 }

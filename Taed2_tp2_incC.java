@@ -1,33 +1,37 @@
-import java.util.LinkedList;
+// Apellido: Pereyra
+// Nombre: Ivan Maximiliano
+// Legajo: VINF011264
 
-class HashTable {
-    private int size;
-    private LinkedList<String>[] table;
+import java.util.ListaEnlazada;
 
-    public HashTable(int size) {
-        this.size = size;
-        table = new LinkedList[size];
-        for (int i = 0; i < size; i++) {
-            table[i] = new LinkedList<>();
+class Hashtabla {
+    private int tamanio;
+    private ListaEnlazada<String>[] tabla;
+
+    public Hashtabla(int tamanio) {
+        this.tamanio = tamanio;
+        tabla = new ListaEnlazada[tamanio];
+        for (int i = 0; i < tamanio; i++) {
+            tabla[i] = new ListaEnlazada<>();
         }
     }
 
-    private int hash(String key) {
+    private int hash(String llave) {
         // Aquí puedes implementar tu función de hash
-        // Puedes usar key.hashCode() % size, por ejemplo
-        return Math.abs(key.hashCode() % size);
+        // Puedes usar llave.hashCode() % tamanio, por ejemplo
+        return Math.abs(llave.hashCode() % tamanio);
     }
 
-    public void insert(String key, String value) {
-        int index = hash(key);
-        table[index].add(value);
+    public void insert(String llave, String valor) {
+        int index = hash(llave);
+        tabla[index].add(valor);
     }
 
-    public void displayTable() {
-        for (int i = 0; i < size; i++) {
+    public void displaytabla() {
+        for (int i = 0; i < tamanio; i++) {
             System.out.print("Bucket " + i + ": ");
-            for (String value : table[i]) {
-                System.out.print(value + " ");
+            for (String valor : tabla[i]) {
+                System.out.print(valor + " ");
             }
             System.out.println();
         }
@@ -36,14 +40,14 @@ class HashTable {
 
 public class Main {
     public static void main(String[] args) {
-        HashTable hashTable = new HashTable(10);
+        Hashtabla hashtabla = new Hashtabla(10);
 
-        hashTable.insert("key1", "value1");
-        hashTable.insert("key2", "value2");
-        hashTable.insert("key3", "value3");
-        hashTable.insert("key4", "value4");
-        hashTable.insert("key5", "value5");
+        hashtabla.insert("llave1", "valor1");
+        hashtabla.insert("llave2", "valor2");
+        hashtabla.insert("llave3", "valor3");
+        hashtabla.insert("llave4", "valor4");
+        hashtabla.insert("llave5", "valor5");
 
-        hashTable.displayTable();
+        hashtabla.displaytabla();
     }
 }

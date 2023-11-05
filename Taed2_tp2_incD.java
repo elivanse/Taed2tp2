@@ -1,3 +1,7 @@
+// Apellido: Pereyra
+// Nombre: Ivan Maximiliano
+// Legajo: VINF011264
+
 import java.util.Scanner;
 
 public class HashTable {

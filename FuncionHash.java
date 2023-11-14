@@ -19,3 +19,4 @@ public class FuncionHash {
         System.out.println("Índice en la tabla: " + index);
     }
 }
+

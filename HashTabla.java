@@ -68,3 +68,5 @@ public class HashTabla {
         TablaCuadratica.displayTable();
     }
 }
+
+

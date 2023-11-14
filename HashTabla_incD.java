@@ -1,7 +1,7 @@
 // Apellido: Pereyra
 // Nombre: Ivan Maximiliano
 // Legajo: VINF011264
-
+// inciso d
 import java.util.Scanner;
 
 public class HashTabla_incD {
@@ -13,15 +13,15 @@ public class HashTabla_incD {
         this.tabla = new int[tamanio];
     }
 
-    public void insert(int llave, String probingMethod) {
+    public void insert(int llave, String MetododePrueba) {
         int indice = hash(llave);
         int i = 1;
 
         while (tabla[indice] != 0) {
             // jandler de colisiones
-            if (probingMethod.equals("linear")) {
+            if (MetododePrueba.equals("linear")) {
                 indice = (indice + 1) % tamanio; // Sonda lineal
-            } else if (probingMethod.equals("quadratic")) {
+            } else if (MetododePrueba.equals("cuadratico")) {
                 indice = (indice + i * i) % tamanio; // cuadrática
                 i++;
             }
@@ -96,7 +96,7 @@ public class HashTabla_incD {
                 case 1:
                     System.out.print("Ingrese el valor a insertar: ");
                     int ValorIngresado = scanner.nextInt();
-                    System.out.print("Seleccione el método de manejo de colisiones (linear/quadratic): ");
+                    System.out.print("Seleccione el método de manejo de colisiones (linear/cuadratico): ");
                     String ValorLinQuad = scanner.next();
                     HashTabla_incD.insert(ValorIngresado, ValorLinQuad);
                     break;

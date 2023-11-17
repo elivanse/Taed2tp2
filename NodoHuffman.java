@@ -1,3 +1,7 @@
+// Apellido: Pereyra
+// Nombre: Ivan Maximiliano
+// Legajo: VINF011264
+
 import java.util.PriorityQueue;
 import java.util.HashMap;
 
@@ -38,7 +42,7 @@ public class HuffmanCoding {
             colaPrioridad.add(new NodoHuffman(c, frecuencias.get(c)));
         }
 
-        // Construir el árbol de Huffman
+        // el árbol de Huffman
         while (colaPrioridad.size() > 1) {
             NodoHuffman izquierdo = colaPrioridad.poll();
             NodoHuffman derecho = colaPrioridad.poll();

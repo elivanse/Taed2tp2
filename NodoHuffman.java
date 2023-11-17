@@ -16,21 +16,23 @@ class NodoHuffman implements Comparable<NodoHuffman> {
     }
 }
 
- public static void main(String[] args) {
+public class HuffmanCoding {
+    public static void main(String[] args) {
         String textoOriginal = "estamos bien";
         System.out.println("Texto original: " + textoOriginal);
 
         HashMap<Character, String> codigos = generarCodigosHuffman(textoOriginal);
         System.out.println("Codificación de Huffman: " + codificarConHuffman(textoOriginal, codigos));
     }
+
     public static HashMap<Character, String> generarCodigosHuffman(String texto) {
-        // Calcular frecuencias de caracteres
+        
         HashMap<Character, Integer> frecuencias = new HashMap<>();
         for (char c : texto.toCharArray()) {
             frecuencias.put(c, frecuencias.getOrDefault(c, 0) + 1);
         }
 
-        // Crear nodos iniciales
+        // nodos iniciales
         PriorityQueue<NodoHuffman> colaPrioridad = new PriorityQueue<>();
         for (char c : frecuencias.keySet()) {
             colaPrioridad.add(new NodoHuffman(c, frecuencias.get(c)));
@@ -48,7 +50,7 @@ class NodoHuffman implements Comparable<NodoHuffman> {
             colaPrioridad.add(nuevoNodo);
         }
 
-        // Generar códigos Huffman
+        // códigos Huffman
         HashMap<Character, String> codigos = new HashMap<>();
         generarCodigosRecursivo(colaPrioridad.peek(), "", codigos);
 
